@@ -33,9 +33,11 @@ def login_page(request):
         return redirect('home')
     return render(request,'login.html')
 
+
 def master_detail(request,master_id):
     try:
         master=Master.objects.get(id=master_id)
     except Master.DoesNotExist:
+
         return HttpResponse('404')
     return render(request,'master_detail.html',{'master':master})
