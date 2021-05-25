@@ -1,0 +1,7 @@
+<h1>Hello!</h1>
+<hr>
+{% for service in services %}
+{{ service.name }}
+{{ service.price }}
+{{ service.master.full_name }}
+{% endfor %}
