@@ -1,5 +1,6 @@
 from user_profile.models import Profile
 
+
 def profileCreate(profile_data,instance):
     name = profile_data.get('name')
     age = profile_data.get('age')
