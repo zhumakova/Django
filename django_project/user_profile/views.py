@@ -12,7 +12,6 @@ def profile_page(request):
         return HttpResponse('404')
     return render(request,'profile.html',{'profile':profile})
 
-
 def order_page(request,service_id):
     service=Service.objects.get(id=service_id)
     user = request.user
