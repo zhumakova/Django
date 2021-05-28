@@ -5,7 +5,6 @@ class Service(models.Model):
     price = models.IntegerField()
     master = models.ForeignKey("Master",on_delete=models.SET_NULL,null=True,related_name="services")
 
-
     def __str__(self):
         return self.name
 
