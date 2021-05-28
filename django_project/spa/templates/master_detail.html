@@ -1,3 +1,14 @@
 {{ master.full_name }}
-
-{{ master.birth_date }}
+{{ master.exp }}
+<hr>
+{% for service in services %}
+<p>Название услуги:<b>{{ service.name }}</b></p>
+<p>Цена:{{ service.price }}</p>
+{% endfor %}
+{% for certificate in certificates %}
+{{ certificate.name }}
+{{ certificate.date_graduate }}
+{{certificate.date_expired}}
+{{certificate.school}}
+<img src="{{certificate.photo.url}}" height="200",weight="500">
+{% endfor %}
