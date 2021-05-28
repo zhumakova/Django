@@ -1,10 +1,8 @@
 from django.core.exceptions import ValidationError
 
-
 def incrementOrderCount(profile):
     profile.order_count += 1
     profile.save()
-
 
 def countMoney(profile, instance):
     price = instance.service.price
