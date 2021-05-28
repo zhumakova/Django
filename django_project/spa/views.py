@@ -1,34 +1,41 @@
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+
+from .forms import RegisterForm
 from .models import Service
-from .models import Master
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate,login
+from  .models import Master
+from .services import profileCreate
+
 
 def homepage(request):
-    return HttpResponse ('Welcome!:)')
+    return HttpResponse(f'Welcome to our site, {request.user}')
 
 def services(request):
-    services=Service.objects.all()
+    services = Service.objects.all()
     return render(request,'service.html',{'services':services})
 
 def masters(request):
-    masters=Master.objects.all()
-    return  render(request,'Masters.html',{'masters':masters})
+    masters = Master.objects.all()
+    return render(request,'master.html',{'masters':masters})
 
 def register_page(request):
-    form=UserCreationForm()
-    if request.method=='POST':
-        form=UserCreationForm(request.POST)
+    form = RegisterForm()
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
+            profileCreate(form.cleaned_data,form.instance)
     return render(request,'register.html',{'form':form})
 
+
+
 def login_page(request):
-    if request.method=='POST':
-        username=request.POST.get('username')
-        password=request.POST.get('password')
-        user=authenticate(request,username=username,password=password)
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request,username=username,password=password)
         login(request,user)
         return redirect('home')
     return render(request,'login.html')
@@ -36,7 +43,10 @@ def login_page(request):
 
 def master_detail(request,master_id):
     try:
-        master=Master.objects.get(id=master_id)
+        master = Master.objects.get(id=master_id)
+        services=master.services.all()
+        certificates=master.certificates_set.all()
     except Master.DoesNotExist:
-        return HttpResponse('404')
-    return render(request,'master_detail.html',{'master':master})
+        return HttpResponse(404)
+    return render(request,'master_detail.html',{'master':master,
+                                                'services':services,'certificates':certificates})

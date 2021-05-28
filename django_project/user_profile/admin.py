@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Profile,Order
+from .models import *
 
-admin.site.register([Profile,Order])
+admin.site.register([Profile, Order])

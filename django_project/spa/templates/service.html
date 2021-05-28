@@ -5,5 +5,6 @@
 {{ service.price }}
 {{ service.master.full_name }}
 <a href="{% url 'master_detail' service.master.id %}">{{ service.master }} </a>
-
+<a href="{% url 'order' service.id %}">Order!</a>
+<br>
 {% endfor %}
