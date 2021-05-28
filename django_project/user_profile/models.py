@@ -3,7 +3,6 @@ from django.db import models
 
 from spa.models import Service
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     photo = models.ImageField()
