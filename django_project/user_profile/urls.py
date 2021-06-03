@@ -4,9 +4,9 @@ from .views import *
 from django.utils import timezone
 
 urlpatterns = [
-    path('profile/',profile_page),
+    path('profile/',profile_page,name='profile'),
     path('order/<int:service_id>/',order_page,name='order'),
     path('order/',my_orders,name='my_orders'),
-    path('delete_order/<int:order_id>/',delete_order),
-    path('update_order/<int:order_id>/',update_order)
+    path('delete_order/<int:order_id>/',delete_order,name='delete_order'),
+    path('update_order/<int:order_id>/',update_order,name='update_order')
 ]
