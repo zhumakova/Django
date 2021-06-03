@@ -1,0 +1,30 @@
+<section class="banner" id="home" role="banner">
+  <header id="header">
+    <div class="header-content clearfix"> <span class="logo"><a href="index.html">Paris<span>...</span> </a></span>
+      <nav class="navigation" role="navigation">
+        <ul class="primary-nav">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'masters' %}">Masters</a></li>
+          {% if request.user.is_authenticated %}
+          <li><a href="{% url 'my_orders'%}">My Orders</a></li>
+          <li><a href="#package">Profile</a></li>
+          {% else %}
+          <li><a href="{% url 'masters' %}">Register</a></li>
+          <li><a href="#contact">Login</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+      <a href="#" class="nav-toggle">Menu<span></span></a> </div>
+  </header>
+  <!-- banner text -->
+  <div class="container">
+    <div class="col-md-6 col-sm-12">
+      <div class="banner-text text-center">
+        <h1>The <span class="icon icon-heart"></span> <span>Beauty</span> Salon</h1>
+        <p>Lorem ipsum dolor sit ametcursus magna vel ipsum dolor scelerisque
+		Lorem consectetur adipiscit.<br/> </p></div>
+      <!-- banner text -->
+    </div>
+  </div>
+</section>
