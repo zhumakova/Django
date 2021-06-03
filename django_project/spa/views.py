@@ -10,7 +10,7 @@ from .services import profileCreate,checkExpiredCertificates
 
 
 def homepage(request):
-    return HttpResponse(f'Welcome to our site, {request.user}')
+    return render(request,'index.html')
 
 def services(request):
     services = Service.objects.all()
