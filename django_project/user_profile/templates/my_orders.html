@@ -1,8 +1,33 @@
-{% for order in orders %}
+{% extends 'base.html' %}
+{% block content %}
+<section id="package" class="packageList">
+  <div class="container">
+      <div class="section-header">
+                <h2 class="wow fadeInDown animated">MY ORDERS</h2>
+                <p class="wow fadeInDown animated">Please call us to schedule your pets appointment today!</p>
+            </div>
+    <div class="row">
+            <div class="col-md-6">
+                {% for order in orders %}
+            	<div class="package wow fadeInLeft animated" data-wow-offset="250" data-wow-delay="200ms">
+                	<h5>{{ order.service.name }}</h5>
+                    <ul class="list-default">
+                    	<li>{{ service.master.full_name }}</li>
+                    	<li>adipiscing eliteger gravida velit quis dolo</li>
+                    	<li> {{ order.date_created }}</li>
+                    </ul>
+                    <strong class="price"><small>Fee</small> {{ order.service.price }} $</strong>
+                     <a href="{% url 'update_order' order.id %}" class="btn btn-outline-success">Update</a>
+        <a href="{% url 'delete_order' order.id %}" class="btn btn-outline-danger">Delete</a>
+                </div>
+                {% endfor %}
 
-{{ order.service.name }}
-{{ order.service.price }}
-{{ order.status }}
-{{ order.payment_method }}
 
-{% endfor %}
+            </div><!-- end col-md-6 -->
+        </div><!-- end row -->
+
+  </div>
+
+</section>
+
+{% endblock %}
