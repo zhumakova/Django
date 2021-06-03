@@ -1,10 +1,28 @@
-<h1>Hello!</h1>
-<hr>
-{% for service in services %}
-{{ service.name }}
-{{ service.price }}
-{{ service.master.full_name }}
-<a href="{% url 'master_detail' service.master.id %}">{{ service.master }} </a>
-<a href="{% url 'order' service.id %}">Order!</a>
-<br>
-{% endfor %}
+{% extends 'base.html' %}
+{% block content %}
+<section id="package" class="packageList">
+  <div class="container">
+      <div class="section-header">
+                <h2 class="wow fadeInDown animated">Price List</h2>
+                <p class="wow fadeInDown animated">Please call us to schedule your pets appointment today!</p>
+            </div>
+    <div class="row">
+            <div class="col-md-6">
+                {% for service in services %}
+            	<div class="package wow fadeInLeft animated" data-wow-offset="250" data-wow-delay="200ms">
+                	<h5>{{ service.name }}</h5>
+                    <ul class="list-default">
+                    	<li>{{ service.master.full_name }}</li>
+                    	<li>adipiscing eliteger gravida velit quis dolo</li>
+                    	<li>Timing - 7:00 am	7:00 pm</li>
+                    </ul>
+                    <strong class="price"><small>Fee</small> {{ service.price }} $</strong>
+                </div>
+                {% endfor %}
+
+
+            </div><!-- end col-md-6 -->
+        </div><!-- end row -->
+  </div>
+</section>
+{% endblock %}
