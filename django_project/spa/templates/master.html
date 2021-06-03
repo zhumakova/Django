@@ -1,12 +1,30 @@
-<h1>Masters</h1>
-<hr>
-{% for master in masters %}
-<img src='{{ master.photo.url }}' height="300" width="300">
+{% extends 'base.html' %}
+{% block content %}
 
-{{ master.full_name }}
-
-{{ master.exp }}
-
-{{ master.birth_date }}
-<hr>
-{% endfor %}
+<section id="teams" class="section teams">
+  <div class="container">
+      <div class="section-header">
+                <h2 class="wow fadeInDown animated">Stylist</h2>
+                <p class="wow fadeInDown animated">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget risus vitae massa <br> semper aliquam quis mattis quam.</p>
+            </div>
+    <div class="row">
+        {% for master in masters %}
+      <div class="col-md-3 col-sm-6">
+        <div class="person"><img src=" {{master.photo.url}} " alt="" class="img-responsive">
+          <div class="person-content">
+            <h4>{{ master.birth_date}}</h4>
+            <h5 class="role">{{ master.full_name }}</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit eget risus vitae massa.</p>
+          </div>
+          <ul class="social-icons clearfix">
+            <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+            <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+            <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
+          </ul>
+        </div>
+      </div>
+        {% endfor %}
+      </div>
+    </div>
+</section>
+{% endblock %}
