@@ -5,6 +5,7 @@ from spa.models import Service
 from .forms import OrderForm
 from .services import * #incrementOrderCount,countMoney,time_check
 from django.utils import timezone
+from django.contrib.auth.models import AnonymousUser
 
 def profile_page(request):
     try:
@@ -23,10 +24,13 @@ def order_page(request,service_id):
             incrementOrderCount(user.profile)
             countMoney(user.profile,form.instance)
             form.save()
-    return render(request,'order.html',{'form':form})
+    return render(request,'order.html',{'form':form,'service': service})
 
 def my_orders(request):
-    orders = Order.objects.filter(user=request.user)
+    user=request.user
+    if isinstance(user,AnonymousUser):
+        return HttpResponse('Login please!')
+    orders = Order.objects.filter(user=user)
     return render(request,'my_orders.html',{'orders':orders})
 
 
