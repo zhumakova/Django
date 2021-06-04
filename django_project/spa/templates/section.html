@@ -9,6 +9,8 @@
           {% if request.user.is_authenticated %}
           <li><a href="{% url 'my_orders'%}">My Orders</a></li>
           <li><a href="#package">Profile</a></li>
+          <li style="color:#F8F8F8">Welcome to our site, {{request.user.profile.name}}</li>
+          <li><a href="{% url 'logout' %}">logout</a></li>
           {% else %}
           <li><a href="{% url 'masters' %}">Register</a></li>
           <li><a href="#contact">Login</a></li>
