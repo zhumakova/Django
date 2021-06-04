@@ -11,6 +11,7 @@ class Profile(models.Model):
     email = models.EmailField()
     wallet = models.PositiveIntegerField(default=0)
     order_count = models.PositiveIntegerField(default=0)
+    sale_amount=models.FloatField(default=0)
 
 
 class Order(models.Model):
