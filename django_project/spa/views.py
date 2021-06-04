@@ -1,4 +1,4 @@
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -12,6 +12,9 @@ from .services import profileCreate,checkExpiredCertificates
 def homepage(request):
     return render(request,'index.html')
 
+def logout_page(request):
+    logout(request)
+    return redirect('home')
 def services(request):
     services = Service.objects.all()
     return render(request,'service.html',{'services':services})
